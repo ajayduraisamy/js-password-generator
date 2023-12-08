@@ -1,38 +1,7 @@
 body {
-    background: #0f172a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial;
+    background: linear-gradient(135deg, #0f172a, #020617);
 }
 
-.container {
-    background: #020617;
-    color: white;
-    padding: 20px;
-    width: 320px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .8);
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-}
-
-.controls label {
-    display: block;
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #38bdf8;
-    cursor: pointer;
+.card {
+    border-radius: 15px;
 }
