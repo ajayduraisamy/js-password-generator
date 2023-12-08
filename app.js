@@ -4,14 +4,25 @@ const chars = {
     symbols: "!@#$%^&*()_+{}[]<>?"
 };
 
+// =========================
+// Generate Password
+// =========================
 function generatePassword(){
     let pool = "";
-    if(document.getElementById("upper").checked)
+    let strength = 0;
+
+    if(document.getElementById("upper").checked){
         pool += chars.upper;
-    if(document.getElementById("numbers").checked)
+        strength++;
+    }
+    if(document.getElementById("numbers").checked){
         pool += chars.numbers;
-    if(document.getElementById("symbols").checked)
+        strength++;
+    }
+    if(document.getElementById("symbols").checked){
         pool += chars.symbols;
+        strength++;
+    }
 
     if(pool === ""){
         alert("Select at least one option");
@@ -21,14 +32,36 @@ function generatePassword(){
     const length = document.getElementById("length").value;
     let password = "";
 
-    for(let i=0;i<length;i++){
+    for(let i = 0; i < length; i++){
         const rand = Math.floor(Math.random() * pool.length);
         password += pool[rand];
     }
 
     document.getElementById("password").value = password;
+    showStrength(strength, length);
 }
 
+// =========================
+// Strength Indicator
+// =========================
+function showStrength(level, len){
+    let text = "Weak";
+
+    if(level >= 2 && len >= 10){
+        text = "Medium";
+    }
+
+    if(level === 3 && len >= 12){
+        text = "Strong";
+    }
+
+    const strengthEl = document.getElementById("strength");
+    strengthEl.innerText = "Strength: " + text;
+}
+
+// =========================
+// COPY TO CLIPBOARD 
+// =========================
 function copyPassword(){
     const passwordField = document.getElementById("password");
 
@@ -38,5 +71,10 @@ function copyPassword(){
     }
 
     navigator.clipboard.writeText(passwordField.value)
-        .then(() => alert("Password copied to clipboard "));
+        .then(() => {
+            alert("Password copied ");
+        })
+        .catch(() => {
+            alert("Copy failed ");
+        });
 }
